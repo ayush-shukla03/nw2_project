@@ -5,7 +5,7 @@ import os
 USERNAME = "f20240719@goa.bits-pilani.ac.in"
 PASSWORD = "Taru@8302700600"
 
-OUTPUT_DIR = "/mnt/nw2data/nw2_project/data/raw/sentinel2/"
+OUTPUT_DIR = "/mnt/nw2data/nw2_project/data/raw/sentinel2/monsoon/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Get access token
@@ -23,17 +23,16 @@ token_resp = requests.post(
 token = token_resp.json()["access_token"]
 print("Token obtained\n")
 
-# Tile IDs to download (March 2nd, good coverage tiles)
+# Tile IDs to download (July 2nd, good coverage tiles)
 tiles = [
-    ("T46RDR", "0e3f8bae-e635-4a60-8a93-b42b3a6ba0dc"),
-    ("T46RDP", "7776c956-f4a5-46c7-8ff8-5f99eb0f5d32"),
-    ("T46RCP", "85d233f1-3f25-452e-a21e-e48263468c84"),
-    ("T46RBQ", "871e974c-ebc5-4b0a-95f9-8d302e454734"),
-    ("T46RDQ", "901eab77-04d7-4776-a6cf-100b7a770c2c"),
-    ("T46RBR", "962c237e-baa2-435c-83a7-2bf89a88b1ac"),
-    ("T46RBP", "9f14c1b6-8914-4e5c-a93d-d4ff4873f0f4"),
-    ("T46RCR", "bc4c1ff2-6613-4a3c-9d1c-4a11044fb7bd"),
-    ("T46RCQ", "f6128fe4-5647-40cf-9e24-b5db58723c5c"),
+    ("monsoon_T46RFQ", "5ec595f5-f7cb-4dd4-9412-5aba47740711"),
+    ("monsoon_T46RFP", "fe68bed8-5156-492e-8fc9-3bb66871ab44"),
+    ("monsoon_T46REQ", "ffa6a53f-c835-478b-a779-6aef3b0158ca"),
+    ("monsoon_T46RER", "b174c9f7-d846-45ce-8193-ee2e93c65989"),
+    ("monsoon_T46RFR", "d6d2244f-7141-4d66-94f3-fb7a6e128e01"),
+    ("monsoon_T46REP", "edacc56a-7d7a-44a9-a087-43dfa82557fe"),
+    ("monsoon_T46RGR", "b38c186c-c93a-44ef-ae83-e25cb737e2ed"),
+    ("monsoon_T46RDP", "52ad5718-a147-4abf-9a70-42c9501da8d6"),
 ]
 
 headers = {"Authorization": f"Bearer {token}"}
