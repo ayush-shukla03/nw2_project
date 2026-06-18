@@ -2,8 +2,8 @@ import requests
 import os
 
 # Your Copernicus credentials
-USERNAME = "f20240719@goa.bits-pilani.ac.in"
-PASSWORD = "Taru@8302700600"
+USERNAME = "redacted" #put your username here
+PASSWORD = "hehe not gonna tell you" #put your password here
 
 OUTPUT_DIR = "/mnt/nw2data/nw2_project/data/raw/sentinel2/monsoon/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
