@@ -90,6 +90,11 @@ def extract_patches_from_tile(tile_dir, tile_name, n_patches=PATCHES_PER_TILE):
         if (patch == 0).sum() / patch.size > 0.3:
             continue
 
+        # ---> THE GEOSPATIAL FIX <---
+        # Define the window and calculate the new spatial transform
+        window = Window(x, y, PATCH_SIZE, PATCH_SIZE)
+        new_transform = rasterio.windows.transform(window, profile['transform'])
+
         # Save patch
         patch_name = f"{tile_name}_y{y}_x{x}.tif"
         patch_path = os.path.join(PATCHES_DIR, "images", patch_name)
@@ -101,7 +106,8 @@ def extract_patches_from_tile(tile_dir, tile_name, n_patches=PATCHES_PER_TILE):
             'width': PATCH_SIZE,
             'dtype': 'float32',
             'driver': 'GTiff',
-            'compress': 'lzw'
+            'compress': 'lzw',
+            'transform': new_transform  # Inject the corrected coordinates here
         })
 
         with rasterio.open(patch_path, 'w', **patch_profile) as dst:
