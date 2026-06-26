@@ -68,6 +68,12 @@ print(f'Auto-labelling {len(patches)} patches...\n')
 
 for path in patches:
     name = os.path.basename(path)
+    label_path = os.path.join(LABELS_DIR, name.replace('.tif', '_label.tif'))
+    
+    if os.path.exists(label_path):
+        print(f'[SKIP] {name} — label already exists')
+        continue
+    
     dist = auto_label_patch(path)
     dist_str = ' | '.join([f'{k}:{v:.0f}%' for k,v in dist.items()])
     print(f'{name:40} → {dist_str}')
